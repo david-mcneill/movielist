@@ -1,6 +1,6 @@
 # movielist
 
-> My phenomenal Nuxt.js project
+> A simple app for searching movies and adding them to a watchlist
 
 ## Build Setup
 
