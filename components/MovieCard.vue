@@ -4,8 +4,8 @@
     <div>
       <img
         class="movie-poster"
-        :src="movie.Poster"
-        :alt="`The movie titled: ${movie.title}`"
+        :src="moviePoster"
+        :alt="`The movie titled: ${movie.Title}`"
       />
     </div>
     <p>({{ movie.Year }})</p>
@@ -16,11 +16,19 @@
 </template>
 
 <script>
+const DEFAULT_PLACEHOLDER_IMAGE = 'https://place-hold.it/200x300'
 export default {
   props: {
     movie: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    moviePoster() {
+      return this.movie.Poster === 'N/A'
+        ? DEFAULT_PLACEHOLDER_IMAGE
+        : this.movie.Poster
     }
   }
 }

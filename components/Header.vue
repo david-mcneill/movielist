@@ -20,6 +20,7 @@ export default {
 header {
   background-color: #282c34;
   height: 100px;
+  flex: 0 0 auto;
 }
 
 header h1 {

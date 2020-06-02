@@ -11,10 +11,7 @@ const apiClient = axios.create({
 })
 
 export default {
-  getMovies() {
-    return apiClient.get('?s=dog&type=movie&apikey=' + apiKey + '&')
-  },
   searchMovies(term) {
-    return apiClient.get('?s=' + term + '&type=movie&apikey=' + apiKey + '&')
+    return apiClient.get(`?s=${term}&type=movie&apikey=${apiKey}&`)
   }
 }
