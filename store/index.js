@@ -1,26 +1,22 @@
+import FetchService from '@/services/FetchService'
+
 export const state = () => ({
-  movies: [
-    {
-      id: 1,
-      title: 'The Matrix',
-      year: 1999
-    },
-    {
-      id: 2,
-      title: 'Inception',
-      year: 2010
-    },
-    {
-      id: 3,
-      title: 'Apollo 13',
-      year: 1997
-    }
-  ]
+  movies: []
 })
 
-export const mutations = {}
+export const mutations = {
+  SET_MOVIES(state, movies) {
+    state.movies = movies
+  }
+}
 
-export const actions = {}
+export const actions = {
+  fetchMovies({ commit }) {
+    return FetchService.getMovies().then((response) => {
+      commit('SET_MOVIES', response.data.Search)
+    })
+  }
+}
 
 export const getters = {
   showMovies(state) {

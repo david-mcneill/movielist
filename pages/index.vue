@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @searchInit="searchMovies">
     <Header />
     <main role="main">
       <div class="outer-wrapper">
@@ -10,30 +10,33 @@
 </template>
 
 <script>
-import axios from 'axios'
-import Header from '../components/Header'
-import MovieGrid from '../components/MovieGrid'
+import { mapState } from 'vuex'
+import Header from '@/components/Header'
+import MovieGrid from '@/components/MovieGrid'
 
 export default {
   components: {
     Header,
     MovieGrid
   },
-  data() {
-    return {
-      movies: []
+  async fetch({ store, error }) {
+    try {
+      await store.dispatch('fetchMovies')
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: 'Unable to fetch movies at this time'
+      })
     }
   },
-  created() {
-    axios
-      .get('https://www.omdbapi.com/?s=space&apikey=4e466448')
-      .then((response) => {
-        console.log(response.data)
-        response.data.Search.map((movie) => this.movies.push(movie))
-      })
-      .catch((error) => {
-        console.log('There was an error: ' + error.message)
-      })
+  computed: mapState({
+    movies: (state) => state.movies
+  }),
+  methods: {
+    searchMovies(term) {
+      // FetchService.searchMovies()
+      console.log(term)
+    }
   }
 }
 </script>
