@@ -6,5 +6,10 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    handleSearchInputChanges() {},
+    callSearchFunction() {}
+  }
+}
 </script>

@@ -56,7 +56,10 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.API_URL,
+    apiKey: process.env.API_KEY
+  },
   /*
    ** Build configuration
    */

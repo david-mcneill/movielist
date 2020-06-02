@@ -1,14 +1,17 @@
 <template>
   <div class="movie">
-    <h4 class="movie-name">{{ movie.title }}</h4>
+    <h4 class="movie-name">{{ movie.Title }}</h4>
     <div>
       <img
-        width="100"
-        src="https://place-hold.it/100x200"
+        class="movie-poster"
+        :src="movie.Poster"
         :alt="`The movie titled: ${movie.title}`"
       />
     </div>
-    <p>({{ movie.year }})</p>
+    <p>({{ movie.Year }})</p>
+    <a :href="`https://www.imdb.com/title/${movie.imdbID}/?ref_=nv_sr_srsg_0`">
+      View on IMDB
+    </a>
   </div>
 </template>
 
@@ -19,11 +22,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  data() {
-    return {
-      defaultPlaceholder: `'https://place-hold.it/200x400'`
-    }
   }
 }
 </script>
@@ -32,5 +30,9 @@ export default {
 .movie-name {
   font-size: 1.5em;
   letter-spacing: 1px;
+}
+
+.movie-poster {
+  max-width: 200px;
 }
 </style>

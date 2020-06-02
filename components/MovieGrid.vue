@@ -7,14 +7,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import MovieCard from './MovieCard'
 export default {
   components: {
     MovieCard
   },
-  computed: {
-    ...mapState(['movies'])
+  props: {
+    movies: {
+      type: Array,
+      required: true
+    }
   }
 }
 </script>
