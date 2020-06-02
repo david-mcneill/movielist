@@ -1,21 +1,17 @@
 import FetchService from '@/services/FetchService'
 
 export const state = () => ({
-  loading: 0,
-  movies: []
+  movies: [],
+  totalResults: 0
 })
 
 export const mutations = {
-  INCREMENT_LOADING(state) {
-    state.loading++
-  },
-
-  DECREMENT_LOADING(state) {
-    state.loading--
-  },
-
   SET_MOVIES(state, movies) {
     state.movies = movies
+  },
+
+  SET_TOTAL_RESULTS(state, totalResults) {
+    state.totalResults = totalResults
   }
 }
 
@@ -31,6 +27,8 @@ export const actions = {
   fetchMovies({ commit }, term) {
     FetchService.searchMovies(term).then((response) => {
       commit('SET_MOVIES', response.data.Search)
+      commit('SET_TOTAL_RESULTS', response.data.totalResults)
+      console.log(response.data)
     })
   }
 }

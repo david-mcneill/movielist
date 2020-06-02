@@ -4,11 +4,13 @@
     <main role="main">
       <div class="outer-wrapper">
         <template v-if="movies.length > 0">
-          <MovieGrid :movies="movies" />
+          <MovieGrid :movies="movies" :total-results="totalResults" />
         </template>
         <template v-else>
           <div class="get-started">
             <p class="get-started__text">Search for a movie to get started</p>
+            <p class="get-started__or">OR</p>
+            <p class="get-started__text">Create your first list</p>
           </div>
         </template>
       </div>
@@ -27,7 +29,8 @@ export default {
     MovieGrid
   },
   computed: mapState({
-    movies: (state) => state.movies
+    movies: (state) => state.movies,
+    totalResults: (state) => state.totalResults
   }),
   methods: {
     searchMovies() {
@@ -77,6 +80,7 @@ main {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #000;
